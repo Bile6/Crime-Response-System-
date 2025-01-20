@@ -1,18 +1,24 @@
-import mongoose from "mongoose";
+import express from 'express';
+import mongoose from 'mongoose';
+import Incident from '../models/incident.js';
+import User from '../models/user.js';
+import { createIncident, getIncident, getIncidntbyId, getSome, updateIncident, upload , getIncidentTypes, getIncidentStatuses } from '../controllers/incidents.js';
+const router = express.Router();
 
-const incidentSchema = new mongoose.Schema({
-  typeOfIncident: { type: String, required: true },
-  date: { type: Date, required: true },
-  description: { type: String, required: true },
-  location: { type: String, require: true },
-  evidence: { type: String },
-  status: { type: String, default: "pending" },
-  witnessInfo: {
-    name: { type: String },
-    phone: { type: Number },
-  },
-});
+router.get("/statuses", getIncidentStatuses);
 
-const Incident = mongoose.model("Incident", incidentSchema);
+router.get("/types", getIncidentTypes);
+//create new incident
+router.post("/add", upload.single('evidence'), createIncident)
 
-export default Incident;
+//Update status
+router.patch("/update/:id", updateIncident)
+
+//get all incidents
+router.get("/all", getIncident)
+//get all incidents
+router.get("/some",getSome)
+
+router.get("/:id", getIncidntbyId)
+
+export default router;
