@@ -1,12 +1,29 @@
-import express from 'express';
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import userRoute from "./routes/user.js";
+import incidentRouter from "./routes/incident.js";
+import assignedRouter from "./routes/assignedIncident.js";
+import cors from 'cors';
+import { authenticate, authorize } from './middleware/auth.js';
+import bodyParser from "body-parser";
+
+dotenv.config();
+
+
 const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
 
-const PORT = 5000;
+app.use("/api/users", userRoute);
+app.use("/api/incident", incidentRouter);
+app.use("/api/incident/assign", assignedRouter);
 
-app.get("/", (req, res) => {
-    res.send("Hello, From server");
-})
+const port = 5000;
+connectDB();
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+
+app.listen(port, ()=> {
+    console.log(`Server running on port ${port}`);
 });
