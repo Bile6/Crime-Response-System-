@@ -1,13 +1,32 @@
-import mongoose from "mongoose";
+import express from 'express';
+import { createUser, deleteUser, get_image, getUserByType, getUserRole, getUsers, loginUser, updateUser } from '../controllers/users.js';
+import { authenticate, authorize } from '../middleware/auth.js';
+import User from '../models/user.js';
+const router = express.Router;
 
-const userSchema = new mongoose.Schema({
-    username: {type: String, required: true, unique: true},
-    email: {type: String, required: true},
-    password: {type: String, required: true},
-    type: {type: String, required: true, default:'user' }
+//Create or add user
+router.post("/add", createUser);
 
-});
+//login auth
+router.post("/login", loginUser);
 
-const User = mongoose.model('User', userSchema);
+//read all users
 
-export default User;
+router.get("/all", getUsers);
+
+router.get("/role", authenticate, getUserRole);
+
+//Delete user
+router.delete("/:id", deleteUser)
+
+// PUT endpoint to update a user by ID
+router.put('/:id', updateUser);
+
+router.get("/type/:type", getUserByType);
+
+router.get("/get_image/uploads/:id", get_image);
+
+
+
+export default router;
+
