@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import AssignIncident from '../models/assignedIncident.js';
-import User from '../models/user.js';
+import User from '../models/users.js';
 import Incident from '../models/incident.js';
 import { assignIncident, getAllassigned, getAssignedById } from '../controllers/assignedIncidents.js';
 

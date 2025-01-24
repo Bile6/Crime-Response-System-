@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import AssignIncident from "../models/assignedIncident.js";
 import Incident from "../models/incident.js";
-import User from "../models/user.js";
+import User from "../models/users.js";
 
 export const assignIncident = async (req, res) => {
     const { incidentId, officerUsername, priority, typeOfIncident,
