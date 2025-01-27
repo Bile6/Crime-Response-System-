@@ -19,8 +19,10 @@ import RegisterOfficer from "./pages/Admin/registerOfficer";
 import Users from "./pages/Admin/users";
 import AdminSidebar from "./components/Admin/sidebar";
 import OfficerSidebar from "./components/Officer/sidebar";
-import officerDashboard from "./pages/Officer/officerDashboard";
+import OfficerDashboard from "./pages/Officer/officerDashboard";
 import officerIncidentDetail from "./pages/Officer/officerIncidentDetail";
+import UserSidebar from "./components/User/userSidebar";
+import OfficerIncidentDetail from "./pages/Officer/officerIncidentDetail";
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -84,7 +86,7 @@ function App() {
         {/* Conditionally render the sidebar based on user role */}
         {userRole === "admin" && <AdminSidebar onLogout={handleLogout} />}
         {userRole === "Officer" && <OfficerSidebar onLogout={handleLogout} />}
-        {/* {userRole === "user" && <UserSidebar onLogout={handleLogout} />} */}
+        {userRole === "user" && <UserSidebar onLogout={handleLogout} />}
 
         <main className="flex-1 p-6">
           <Routes>
@@ -96,7 +98,6 @@ function App() {
                 <Route path="/admin/users" element={<Users />} />
                 <Route path="/admin/incidents/:id" element={<IncidentDetail />} />
                 <Route path="/admin/register-officer" element={<RegisterOfficer />} />
-                {/* <Route path="/admin/assignIncident" element={<AssignIncident />} /> */}
                 <Route path="/admin/assignIncident" element={<AssignIncident />} />
               </>
             )}
@@ -104,8 +105,8 @@ function App() {
             {/* Officer Routes */}
             {userRole === 'Officer' && (
               <>
-                <Route path="/officer/incidents" element={<officerDashboard />} />
-                <Route path="/officer/incidents/:id" element={<officerIncidentDetail />} />
+                <Route path="/officer/incidents" element={<OfficerDashboard />} />
+                <Route path="/officer/incidents/:id" element={<OfficerIncidentDetail />} />
                 {/* <Route path="/progress" element={<ProgressIncident />} /> */}
                 {/* <Route path="/progress/progress/:id" element={<ProgressIncidentDetail />} /> */}
                 {/* <Route path="/resolved" element={<ResolvedIncident />} /> */}

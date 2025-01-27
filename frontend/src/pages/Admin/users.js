@@ -100,7 +100,6 @@ const Users = () => {
               className="border p-2 rounded mr-2"
             >
               <option value="">All Roles</option>
-              <option value="admin">Admin</option>
               <option value="Officer">Officer</option>
               <option value="user">User</option>
             </select>

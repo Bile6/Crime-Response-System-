@@ -34,7 +34,7 @@ export const createUser = async (req, res) => {
 
 export const getUsers =  async (req, res) => {
     try {
-        const  users = await User.find({});
+        const  users = await User.find({type: {$ne: "admin"}});
         res.status(200).json({data: users});
     } catch (error) {
         console.log("error getting users", error.message);
