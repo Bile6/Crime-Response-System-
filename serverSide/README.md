@@ -8,7 +8,8 @@ This project is for reporting the incidents occur the city to the authorities.
 - `database/`: Contains the database connection configuration.
 - `middlewares/`: Contains middleware functions for handling various tasks.
 - `models/`: Contains the database models.
-- `routes/`: Contains the route definitions.
+- `routes/`: Cntains the route definitions.
+- `uploads/`: File storing the images uploaded by the users
 
 ## Setup and Run
 
